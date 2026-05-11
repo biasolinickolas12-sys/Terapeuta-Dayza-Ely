@@ -47,7 +47,7 @@ export default function ConstellationBackground() {
     const whiteTexture = createCircleTexture('rgba(214, 158, 255, 0.7)'); // light lilac glow 
 
     // Particles (Constellation Stars)
-    const starCount = 200; 
+    const starCount = 120; 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
     const initialPositions = new Float32Array(starCount * 3);
@@ -83,7 +83,7 @@ export default function ConstellationBackground() {
     scene.add(starField);
 
     // Floating white stars background
-    const bgStarCount = 500; 
+    const bgStarCount = 300; 
     const bgGeometry = new THREE.BufferGeometry();
     const bgPositions = new Float32Array(bgStarCount * 3);
     const bgVelocities = new Float32Array(bgStarCount * 3);

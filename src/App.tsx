@@ -504,7 +504,7 @@ const FeedbackSection = () => {
       <div className="pb-16 md:pb-48 relative z-10">
         {/* Glowing Particle Background - Mature Spiritual Tones */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {[...Array(120)].map((_, i) => {
+          {[...Array(40)].map((_, i) => {
           const size = Math.random() * 2 + 1;
           const colors = ['#9D4EDD', '#581845', '#C77DFF', '#B79494', '#9CAF88'];
           const color = colors[i % colors.length];
@@ -821,7 +821,7 @@ const FAQSection = () => {
 
       {/* Glowing Particle Background for FAQ */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {[...Array(60)].map((_, i) => {
+        {[...Array(30)].map((_, i) => {
           const size = Math.random() * 3 + 1;
           const colors = ['#A855F7', '#C084FC', '#E879F9', '#D946EF', '#FFFFFF'];
           const color = colors[i % colors.length];
@@ -1164,7 +1164,7 @@ const ProductsSection = () => {
 
       {/* Floating Background Particles */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden mix-blend-overlay">
-        {[...Array(250)].map((_, i) => {
+        {[...Array(60)].map((_, i) => {
           const size = Math.random() * 2 + 1;
           const colors = ['#FFFFFF', '#FDE68A', '#E9D5FF', '#D8B4FE'];
           const color = colors[i % colors.length];
@@ -2588,7 +2588,7 @@ export default function App() {
       <Section id="quem-sou-eu" className="bg-[#0D0718] py-16 sm:py-24 relative overflow-hidden z-10 isolate text-white">
         {/* Glowing Particle Background - Purple and Pink Tones */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {[...Array(450)].map((_, i) => {
+          {[...Array(80)].map((_, i) => {
             const size = Math.random() * 2.5 + 1.2;
             const colors = ['#F0ABFC', '#D946EF', '#C77DFF', '#E879F9', '#FFD6FF']; // Brighter palette
             const color = colors[i % colors.length];
