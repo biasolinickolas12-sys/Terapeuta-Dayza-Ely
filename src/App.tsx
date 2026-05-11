@@ -2308,14 +2308,14 @@ export default function App() {
           </motion.div>
 
           {/* Remodeled Roots System Section - Vertical Alignment */}
-          <section className="mt-32 md:mt-60 relative max-w-7xl mx-auto px-4 md:px-6 overflow-visible">
+          <section className="mt-32 md:mt-60 relative max-w-7xl mx-auto px-0 md:px-6 overflow-hidden">
             {/* Atmospheric Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none z-0">
               <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-magenta/10 blur-[150px] rounded-full animate-pulse" />
               <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-indigo/15 blur-[180px] rounded-full animate-pulse [animation-delay:2s]" />
             </div>
 
-            <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-24 relative z-10 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-24 relative z-10 items-center px-4 md:px-0">
               
               {/* Left Column - Diagnostic Cards (Vertical Column) */}
               <div className="space-y-8 lg:pt-10">
@@ -2367,10 +2367,10 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: i * 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="group relative w-full max-w-[calc(100vw-2rem)] md:max-w-xl mx-auto md:mx-0"
+                    className="group relative w-full max-w-full md:max-w-xl mx-auto md:mx-0"
                   >
                     <div className={`absolute -inset-1 bg-linear-to-r ${item.color === 'magenta' ? 'from-brand-magenta to-brand-indigo' : 'from-brand-indigo to-brand-magenta'} rounded-2xl md:rounded-[3rem] blur opacity-15 group-hover:opacity-40 transition duration-500`} />
-                    <div className="relative p-5 sm:p-8 md:p-10 rounded-xl md:rounded-[3rem] bg-linear-to-br from-[#0D0718] via-[#1A0B2E] to-[#0D0718] border-2 border-white/10 overflow-hidden">
+                    <div className="relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[3rem] bg-linear-to-br from-[#0D0718] via-[#1A0B2E] to-[#0D0718] border-2 border-white/10 overflow-hidden box-border">
                       <div className="absolute top-0 right-0 p-4 md:p-8 text-4xl md:text-6xl font-display font-black text-white/[0.03] select-none">
                         {item.id}
                       </div>
@@ -2407,7 +2407,7 @@ export default function App() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      className="relative w-full md:w-fit p-5 sm:p-10 md:p-14 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.5),0_0_80px_rgba(217,70,239,0.15)] group mb-12 transition-all duration-1000"
+                      className="relative w-full md:w-fit p-5 sm:p-10 md:p-14 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.5),0_0_80px_rgba(217,70,239,0.15)] group mb-8 md:mb-12 transition-all duration-1000 box-border"
                     >
                       {/* Interactive Dark Purple Glow Border with matching shape */}
                       <div className="absolute inset-0 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] border-2 border-brand-magenta/30 group-hover:border-brand-magenta/70 blur-[1px] transition-all duration-700" />
@@ -2443,7 +2443,7 @@ export default function App() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      className="relative p-6 sm:p-10 md:p-16 rounded-2xl md:rounded-[2rem_5rem_2rem_5rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.4),0_0_70px_rgba(217,70,239,0.15)] group"
+                      className="relative p-5 sm:p-10 md:p-16 rounded-2xl md:rounded-[2rem_5rem_2rem_5rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.4),0_0_70px_rgba(217,70,239,0.15)] group box-border"
                     >
                       {/* Interactive Neon Glow Border with matching shape */}
                       <div className="absolute inset-0 rounded-2xl md:rounded-[2rem_5rem_2rem_5rem] border-2 border-brand-magenta/30 group-hover:border-brand-magenta/70 blur-[1px] transition-all duration-700" />
@@ -2487,7 +2487,7 @@ export default function App() {
                 e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
                 e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
               }}
-              className="mt-20 relative group p-[2px] rounded-3xl md:rounded-full bg-linear-to-r from-brand-magenta via-brand-indigo to-brand-magenta shadow-[0_0_30px_rgba(217,70,239,0.3)] hover:shadow-[0_0_50px_rgba(217,70,239,0.5)] transition-all duration-700 overflow-hidden"
+              className="mt-20 relative group p-[2px] rounded-3xl md:rounded-full bg-linear-to-r from-brand-magenta via-brand-indigo to-brand-magenta shadow-[0_0_30px_rgba(217,70,239,0.3)] hover:shadow-[0_0_50px_rgba(217,70,239,0.5)] transition-all duration-700 overflow-hidden box-border mx-2 sm:mx-0"
             >
               {/* Floating Light Layer (Spotlight) */}
               <div 
