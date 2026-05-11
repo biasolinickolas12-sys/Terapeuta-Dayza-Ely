@@ -309,12 +309,15 @@ const WhoIsForModal = () => {
     };
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       window.addEventListener('keydown', handleEscape);
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
       window.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen]);
@@ -337,7 +340,7 @@ const WhoIsForModal = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -351,7 +354,7 @@ const WhoIsForModal = () => {
               initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 40 }}
-              className="relative w-[92%] md:w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] border border-brand-magenta/40 bg-linear-to-b from-[#0D0718] via-[#2D1B4E] to-[#0D0718] shadow-[0_25px_50px_-12px_rgba(168,85,247,0.5)] p-0"
+              className="relative w-[80%] md:w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-[2rem] border border-brand-magenta/40 bg-linear-to-b from-[#0D0718] via-[#2D1B4E] to-[#0D0718] shadow-[0_25px_50px_-12px_rgba(168,85,247,0.5)] p-0"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
