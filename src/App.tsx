@@ -1542,7 +1542,7 @@ export default function App() {
           <div className="flex-1 flex items-center transition-colors duration-500">
             {/* Desktop Links */}
             <div className={`hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] ${scrolled ? 'text-brand-deep pl-4' : 'text-white/90'}`}>
-              {['Home', 'Quem Sou Eu'].map((item) => (
+              {['Home', 'Quem Sou Eu', 'Feedbacks'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item === 'Home' ? 'hero' : item.toLowerCase().replace(/ /g, '-')}`} 
