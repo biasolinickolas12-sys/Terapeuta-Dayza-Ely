@@ -1604,7 +1604,7 @@ export default function App() {
       <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20">
         {/* Shooting Stars Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(isTouch ? 8 : 15)].map((_, i) => (
             <div 
               key={i}
               className="shooting-star"

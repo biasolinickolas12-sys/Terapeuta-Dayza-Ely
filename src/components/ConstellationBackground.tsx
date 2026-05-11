@@ -49,7 +49,7 @@ export default function ConstellationBackground() {
     const whiteTexture = createCircleTexture('rgba(214, 158, 255, 0.7)'); // light lilac glow 
 
     // Particles (Constellation Stars)
-    const starCount = isTouchDevice ? 60 : 120; 
+    const starCount = isTouchDevice ? 150 : 400; 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
     const initialPositions = new Float32Array(starCount * 3);
@@ -85,7 +85,7 @@ export default function ConstellationBackground() {
     scene.add(starField);
 
     // Floating white stars background
-    const bgStarCount = isTouchDevice ? 100 : 300; 
+    const bgStarCount = isTouchDevice ? 300 : 1000; 
     const bgGeometry = new THREE.BufferGeometry();
     const bgPositions = new Float32Array(bgStarCount * 3);
     const bgVelocities = new Float32Array(bgStarCount * 3);
@@ -111,7 +111,7 @@ export default function ConstellationBackground() {
     scene.add(bgStarField);
 
     // Nebula Clouds
-    const nebulaCount = 15;
+    const nebulaCount = isTouchDevice ? 20 : 40;
     const nebulaGeometry = new THREE.BufferGeometry();
     const nebulaPositions = new Float32Array(nebulaCount * 3);
     for (let i = 0; i < nebulaCount; i++) {
@@ -137,7 +137,9 @@ export default function ConstellationBackground() {
     const connectionsSet = new Set<string>();
 
     for (let i = 0; i < starCount; i++) {
-        const maxConnections = Math.random() > 0.8 ? 2 : 1; 
+        const maxConnections = isTouchDevice 
+            ? (Math.random() > 0.8 ? 2 : 1) 
+            : (Math.random() > 0.6 ? 3 : 2); 
         const distances = [];
         for (let j = 0; j < starCount; j++) {
             if (i === j) continue;
