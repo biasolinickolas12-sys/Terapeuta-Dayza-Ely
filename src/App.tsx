@@ -448,13 +448,13 @@ const whatsappLink = "https://wa.me/554584055138"; // Real Contact Number
 
 const FeedbackSection = () => {
   const images = [
-    "WhatsApp Image 2026-04-27 at 09.44.35.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.44.57.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.45.19.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.45.50.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.46.06.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.46.21.jpeg",
-    "WhatsApp Image 2026-04-27 at 09.46.38.jpeg"
+    "feedback_1.jpeg",
+    "feedback_2.jpeg",
+    "feedback_3.jpeg",
+    "feedback_4.jpeg",
+    "feedback_5.jpeg",
+    "feedback_6.jpeg",
+    "feedback_7.jpeg"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -2784,7 +2784,7 @@ export default function App() {
                 {/* Main Image Container */}
                 <div className="relative h-full w-full rounded-[4rem] overflow-hidden border-2 border-white/10 shadow-[0_60px_100px_rgba(0,0,0,0.6)] bg-[#0A0514] items-center">
                   <img 
-                    src="/WhatsApp Image 2026-04-27 at 10.14.03.jpeg" 
+                    src="/dayza_about.jpeg" 
                     alt="Dayza Ely" 
                     className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] transition-all duration-1000 group-hover:scale-110 group-hover:grayscale-0"
                     style={{ mixBlendMode: 'normal' }}
