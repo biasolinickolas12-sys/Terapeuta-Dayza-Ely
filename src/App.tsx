@@ -351,14 +351,14 @@ const WhoIsForModal = () => {
               initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 40 }}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] border border-brand-magenta/40 bg-linear-to-b from-[#0D0718] via-[#2D1B4E] to-[#0D0718] shadow-[0_25px_50px_-12px_rgba(168,85,247,0.5)] p-0"
+              className="relative w-[92%] md:w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] border border-brand-magenta/40 bg-linear-to-b from-[#0D0718] via-[#2D1B4E] to-[#0D0718] shadow-[0_25px_50px_-12px_rgba(168,85,247,0.5)] p-0"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button 
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 z-20 p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors group"
-                aria-label="Fecar"
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors group"
+                aria-label="Fechar"
               >
                 <XCircle className="w-6 h-6 text-white/50 group-hover:text-brand-magenta transition-colors" />
               </button>
@@ -422,17 +422,21 @@ const WhoIsForModal = () => {
                   </div>
                 </div>
 
-                <div className="mt-10 text-center">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="inline-flex flex-col items-center gap-3"
+                <div className="mt-8 md:mt-12 text-center pb-6">
+                  <motion.button
+                    onClick={() => setIsOpen(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-white/40 hover:text-brand-magenta font-accent text-[10px] uppercase tracking-[0.4em] transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-full border border-brand-magenta/30 flex items-center justify-center">
-                      <Infinity className="w-5 h-5 text-brand-magenta opacity-70" />
+                    — Clique para fechar —
+                  </motion.button>
+                  
+                  <div className="mt-6 flex justify-center">
+                    <div className="w-8 h-8 rounded-full border border-brand-magenta/20 flex items-center justify-center">
+                      <Infinity className="w-4 h-4 text-brand-magenta opacity-40" />
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>
