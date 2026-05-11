@@ -2182,7 +2182,7 @@ export default function App() {
           </div>
           </motion.div>
 
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
             <div className="relative group">
 
               <AnimatePresence mode="wait">
@@ -2367,7 +2367,7 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: i * 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="group relative w-full max-w-full md:max-w-xl mx-auto md:mx-0"
+                    className="group relative w-full max-w-[calc(100vw-2rem)] md:max-w-xl mx-auto md:mx-0"
                   >
                     <div className={`absolute -inset-1 bg-linear-to-r ${item.color === 'magenta' ? 'from-brand-magenta to-brand-indigo' : 'from-brand-indigo to-brand-magenta'} rounded-2xl md:rounded-[3rem] blur opacity-15 group-hover:opacity-40 transition duration-500`} />
                     <div className="relative p-5 sm:p-8 md:p-10 rounded-xl md:rounded-[3rem] bg-linear-to-br from-[#0D0718] via-[#1A0B2E] to-[#0D0718] border-2 border-white/10 overflow-hidden">
@@ -2398,7 +2398,7 @@ export default function App() {
               {/* Right Column - Text Section */}
               <div className="space-y-16 order-first lg:order-last">
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, y: 20, x: isTouch ? 0 : 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   className="space-y-10"
@@ -2407,7 +2407,7 @@ export default function App() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      className="relative w-full md:w-fit p-6 sm:p-10 md:p-14 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.5),0_0_80px_rgba(217,70,239,0.15)] group mb-12 transition-all duration-1000"
+                      className="relative w-full md:w-fit p-5 sm:p-10 md:p-14 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] bg-[#0D0718] border border-brand-magenta/40 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.5),0_0_80px_rgba(217,70,239,0.15)] group mb-12 transition-all duration-1000"
                     >
                       {/* Interactive Dark Purple Glow Border with matching shape */}
                       <div className="absolute inset-0 rounded-2xl md:rounded-[5rem_2rem_5rem_2rem] border-2 border-brand-magenta/30 group-hover:border-brand-magenta/70 blur-[1px] transition-all duration-700" />
@@ -2424,15 +2424,15 @@ export default function App() {
                         className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-brand-magenta/20 rounded-full blur-[120px] pointer-events-none"
                       />
 
-                      <h3 className="relative z-10 text-4xl sm:text-5xl md:text-7xl font-display tracking-tighter text-white leading-[0.85] lowercase filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_0_20px_rgba(217,70,239,0.4)] transition-all duration-700">
+                      <h3 className="relative z-10 text-3xl sm:text-5xl md:text-7xl font-display tracking-tighter text-white leading-[0.85] lowercase filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_0_20px_rgba(217,70,239,0.4)] transition-all duration-700">
                         A raiz <br />
                         <span className="text-brand-magenta font-black italic relative z-10 brightness-125 drop-shadow-[0_0_15px_rgba(217,70,239,0.5)]">
                           invisível
                           <motion.div 
                             initial={{ width: 0 }} 
-                            whileInView={{ width: "110%" }} 
+                            whileInView={{ width: isTouch ? "100%" : "110%" }} 
                             transition={{ delay: 1, duration: 1.5 }} 
-                            className="absolute -bottom-1 -left-[5%] h-4 bg-brand-magenta/20 -z-10 skew-x-12" 
+                            className={`absolute -bottom-1 ${isTouch ? 'left-0' : '-left-[5%]'} h-4 bg-brand-magenta/20 -z-10 skew-x-12`} 
                           />
                         </span> <br /> 
                         de tudo.
@@ -2450,7 +2450,7 @@ export default function App() {
                       <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta to-transparent group-hover:via-brand-magenta brightness-150 transition-all duration-700 blur-[1px]" />
                       
                       <div className="relative z-10 space-y-8">
-                        <p className="text-white/90 font-light text-xl sm:text-2xl md:text-3xl leading-[1.4] max-w-xl tracking-tight italic">
+                        <p className="text-white/90 font-light text-lg sm:text-2xl md:text-3xl leading-[1.4] max-w-xl tracking-tight italic">
                           "Muitas dores que você vive hoje são <span className="text-brand-indigo font-bold brightness-125 drop-shadow-[0_0_10px_rgba(129,140,248,0.4)]">reflexos</span> de um sistema maior que opera no fundo da sua alma, <span className="text-brand-magenta font-black brightness-125 drop-shadow-[0_0_10px_rgba(217,70,239,0.5)]">conectando você</span> a histórias que ainda precisam ser vistas."
                         </p>
 
