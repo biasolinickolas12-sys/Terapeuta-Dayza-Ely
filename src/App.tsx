@@ -1542,7 +1542,7 @@ export default function App() {
           <div className="flex-1 flex items-center transition-colors duration-500">
             {/* Desktop Links */}
             <div className={`hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] ${scrolled ? 'text-brand-deep pl-4' : 'text-white/90'}`}>
-              {['Home', 'Quem Sou Eu', 'Feedbacks'].map((item) => (
+              {['Home', 'Quem Sou Eu'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item === 'Home' ? 'hero' : item.toLowerCase().replace(/ /g, '-')}`} 
@@ -1583,6 +1583,13 @@ export default function App() {
           <div className="flex items-center gap-4 md:gap-6">
             {/* Desktop Links (Right) */}
             <div className={`hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-500 ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
+              <a 
+                href="#feedbacks" 
+                className="group relative py-2 transition-all hover:text-[#C084FC]"
+              >
+                Transformação
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#C084FC] to-[#A855F7] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#A855F7]" />
+              </a>
               <a 
                 href="#metodo" 
                 className="group relative py-2 transition-all hover:text-[#C084FC]"
