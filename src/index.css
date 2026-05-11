@@ -68,6 +68,13 @@
   animation: noise 0.2s infinite;
 }
 
+@media (max-width: 768px) {
+  .grain-overlay {
+    animation: none;
+    opacity: 0.05;
+  }
+}
+
 @keyframes noise {
   0% { transform: translate(0,0) }
   10% { transform: translate(-5%,-5%) }
@@ -92,6 +99,14 @@
   pointer-events: none;
   z-index: -10;
   mix-blend-mode: screen;
+}
+
+@media (max-width: 768px) {
+  .ambient-glow, .ambient-blush-lilac {
+    filter: blur(40px);
+    opacity: 0.3;
+    animation: none !important;
+  }
 }
 
 .ambient-blush-lilac {
@@ -222,6 +237,22 @@
   pointer-events: none;
   z-index: 0;
   opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .shooting-star {
+    width: 100px;
+    filter: drop-shadow(0 0 5px white);
+    animation-duration: 6s;
+  }
+  
+  .text-glow-lilac, .text-glow-magenta, .text-glow-vibrant-purple {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .neon-underline {
+    box-shadow: 0 0 8px #A855F7;
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar {

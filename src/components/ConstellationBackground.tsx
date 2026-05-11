@@ -16,9 +16,10 @@ export default function ConstellationBackground() {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
     camera.position.z = 500;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isTouchDevice ? 1 : 1.5));
     container.appendChild(renderer.domElement);
 
     // Create a circular glow texture
@@ -47,7 +48,7 @@ export default function ConstellationBackground() {
     const whiteTexture = createCircleTexture('rgba(214, 158, 255, 0.7)'); // light lilac glow 
 
     // Particles (Constellation Stars)
-    const starCount = 120; 
+    const starCount = isTouchDevice ? 60 : 120; 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
     const initialPositions = new Float32Array(starCount * 3);
@@ -83,7 +84,7 @@ export default function ConstellationBackground() {
     scene.add(starField);
 
     // Floating white stars background
-    const bgStarCount = 300; 
+    const bgStarCount = isTouchDevice ? 100 : 300; 
     const bgGeometry = new THREE.BufferGeometry();
     const bgPositions = new Float32Array(bgStarCount * 3);
     const bgVelocities = new Float32Array(bgStarCount * 3);
@@ -195,7 +196,10 @@ export default function ConstellationBackground() {
         mouseY = (event.clientY - window.innerHeight / 2) / 100;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    // const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice) {
+        window.addEventListener('mousemove', handleMouseMove);
+    }
 
     // Animation loop
     const animate = () => {
@@ -282,7 +286,9 @@ export default function ConstellationBackground() {
 
     return () => {
         cancelAnimationFrame(requestRef);
-        window.removeEventListener('mousemove', handleMouseMove);
+        if (!isTouchDevice) {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
         window.removeEventListener('resize', handleResize);
         container.removeChild(renderer.domElement);
         scene.clear();

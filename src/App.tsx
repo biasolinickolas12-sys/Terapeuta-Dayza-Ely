@@ -49,6 +49,8 @@ import {
 import React, { useState, useEffect } from "react";
 import ConstellationBackground from "./components/ConstellationBackground";
 
+const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
 const SystemicTree = ({ className }: { className?: string }) => (
   <svg 
     viewBox="0 0 24 24" 
@@ -611,9 +613,15 @@ const FeedbackSection = () => {
         {/* Carousel Window */}
         <div className="overflow-hidden pt-12 -mt-12">
           <motion.div 
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -50) nextSlide();
+              if (info.offset.x > 50) prevSlide();
+            }}
             animate={{ x: `-${currentIndex * (100 / cardsToShow)}%` }}
             transition={{ type: "spring", stiffness: 180, damping: 28 }}
-            className="flex pb-12"
+            className="flex pb-12 cursor-grab active:cursor-grabbing"
           >
             {images.map((img, i) => (
               <div 
@@ -821,7 +829,7 @@ const FAQSection = () => {
 
       {/* Glowing Particle Background for FAQ */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {[...Array(30)].map((_, i) => {
+        {[...Array(isTouch ? 10 : 30)].map((_, i) => {
           const size = Math.random() * 3 + 1;
           const colors = ['#A855F7', '#C084FC', '#E879F9', '#D946EF', '#FFFFFF'];
           const color = colors[i % colors.length];
@@ -953,17 +961,21 @@ const FAQSection = () => {
 const DiagnosticIcon = ({ icon: Icon }: { icon: any }) => {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 border border-brand-magenta/30 rounded-full border-dashed"
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-4 border border-brand-magenta/20 rounded-full border-dotted"
-      />
-      <div className="absolute inset-0 bg-brand-magenta/5 rounded-full blur-[20px]" />
+      {!isTouch && (
+        <>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 border border-brand-magenta/30 rounded-full border-dashed"
+          />
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-4 border border-brand-magenta/20 rounded-full border-dotted"
+          />
+        </>
+      )}
+      <div className={`absolute inset-0 bg-brand-magenta/5 rounded-full ${isTouch ? 'blur-md' : 'blur-[20px]'}`} />
       <div className="relative z-10 text-white transition-all duration-700">
         <Icon strokeWidth={1} className="w-14 h-14 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(217,70,239,0.8)] opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
       </div>
@@ -971,7 +983,7 @@ const DiagnosticIcon = ({ icon: Icon }: { icon: any }) => {
   );
 };
 
-const DiagnosticCard = ({ item, index }: any) => {
+const DiagnosticCard = ({ item, index, isTouch }: any) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -983,7 +995,7 @@ const DiagnosticCard = ({ item, index }: any) => {
 
   return (
     <motion.div
-      whileHover="hover"
+      whileHover={!isTouch ? "hover" : undefined}
       initial="initial"
       variants={{
         initial: { opacity: 0, y: 40 },
@@ -1000,8 +1012,8 @@ const DiagnosticCard = ({ item, index }: any) => {
         duration: 0.8,
         ease: [0.23, 1, 0.32, 1] 
       }}
-      onMouseMove={handleMouseMove}
-      className="group relative w-full h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] overflow-hidden rounded-2xl bg-[#08040C] border-2 border-brand-magenta shadow-[0_0_20px_rgba(217,70,239,0.5)] hover:shadow-[0_0_35px_rgba(217,70,239,0.8)] flex flex-col justify-between p-4 sm:p-6 md:p-8 perspective-1000 cursor-default"
+      onMouseMove={!isTouch ? handleMouseMove : undefined}
+      className={`group relative w-full h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] overflow-hidden rounded-2xl bg-[#08040C] border-2 border-brand-magenta shadow-[0_0_20px_rgba(217,70,239,0.5)] flex flex-col justify-between p-4 sm:p-6 md:p-8 cursor-default ${!isTouch ? 'perspective-1000' : ''}`}
     >
       {/* Dynamic Mouse Mask */}
       <motion.div
@@ -1150,21 +1162,21 @@ const ProductsSection = () => {
     <Section id="vendas" className="bg-linear-to-br from-[#F5E6FF] via-[#D8B4FE] to-[#F3E8FF] text-[#1A0B2E] border-y border-brand-lilac/30 relative overflow-hidden py-20 md:py-48 shadow-[inset_0_0_150px_rgba(168,85,247,0.2)]">
       {/* Atmospheric Background matching Method */}
       <div className="absolute inset-0 bg-linear-to-br from-white/10 via-[#C084FC]/30 to-white/10 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-magenta/20 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-plum/20 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none z-0" />
+      <div className={`absolute top-0 right-0 w-[700px] h-[700px] bg-brand-magenta/20 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none z-0`} />
+      <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-plum/20 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none z-0`} />
       
       {/* Glowing Systemic Tree Background */}
       <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-end opacity-30 md:opacity-70 overflow-hidden mix-blend-screen">
         <ConstellationLayer />
         <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice" className="w-[1400px] h-[900px] text-[#E9D5FF] drop-shadow-[0_0_15px_rgba(233,213,255,0.4)] absolute bottom-0 left-1/2 -translate-x-1/2 min-w-full min-h-full">
-          <RecursiveTreeStatic x={150} y={900} length={220} angle={-65} depth={1} maxDepth={8} />
-          <RecursiveTreeStatic x={1250} y={900} length={220} angle={-115} depth={1} maxDepth={8} />
+          <RecursiveTreeStatic x={150} y={900} length={220} angle={-65} depth={1} maxDepth={isTouch ? 5 : 8} />
+          <RecursiveTreeStatic x={1250} y={900} length={220} angle={-115} depth={1} maxDepth={isTouch ? 5 : 8} />
         </svg>
       </div>
 
       {/* Floating Background Particles */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden mix-blend-overlay">
-        {[...Array(60)].map((_, i) => {
+        {[...Array(isTouch ? 20 : 60)].map((_, i) => {
           const size = Math.random() * 2 + 1;
           const colors = ['#FFFFFF', '#FDE68A', '#E9D5FF', '#D8B4FE'];
           const color = colors[i % colors.length];
@@ -1443,61 +1455,65 @@ export default function App() {
       {/* Texture and Ambient Overlays */}
       <div className="grain-overlay opacity-20" />
       
-      <motion.div 
-        animate={{ 
-          x: [0, 100, -50, 0], 
-          y: [0, -80, 120, 0],
-          scale: [1, 1.4, 0.8, 1] 
-        }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="ambient-glow -top-[10%] -left-[10%] opacity-50 fixed" 
-      />
+      {!isTouch && (
+        <>
+          <motion.div 
+            animate={{ 
+              x: [0, 100, -50, 0], 
+              y: [0, -80, 120, 0],
+              scale: [1, 1.4, 0.8, 1] 
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="ambient-glow -top-[10%] -left-[10%] opacity-50 fixed" 
+          />
 
-      {/* Intense Lilac Blush Spots */}
-      <motion.div 
-        animate={{ 
-          opacity: [0.6, 0.9, 0.6],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="ambient-blush-lilac top-[10%] left-[60%] fixed" 
-      />
+          {/* Intense Lilac Blush Spots */}
+          <motion.div 
+            animate={{ 
+              opacity: [0.6, 0.9, 0.6],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="ambient-blush-lilac top-[10%] left-[60%] fixed" 
+          />
 
-      <motion.div 
-        animate={{ 
-          opacity: [0.5, 0.8, 0.5],
-          scale: [1.2, 1, 1.2],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="ambient-blush-lilac bottom-[15%] left-[5%] fixed" 
-      />
+          <motion.div 
+            animate={{ 
+              opacity: [0.5, 0.8, 0.5],
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="ambient-blush-lilac bottom-[15%] left-[5%] fixed" 
+          />
 
-      <motion.div 
-        animate={{ 
-          opacity: [0.4, 0.7, 0.4],
-          scale: [0.8, 1.1, 0.8],
-        }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-        className="ambient-blush-lilac middle-y right-[10%] fixed" 
-      />
-      
-      <motion.div 
-        animate={{ 
-          x: [0, -120, 80, 0], 
-          y: [0, 60, -90, 0],
-          scale: [1, 0.9, 1.2, 1] 
-        }}
-        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-        className="ambient-glow top-[30%] -right-[15%] bg-brand-coral/5 fixed" 
-      />
+          <motion.div 
+            animate={{ 
+              opacity: [0.4, 0.7, 0.4],
+              scale: [0.8, 1.1, 0.8],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+            className="ambient-blush-lilac middle-y right-[10%] fixed" 
+          />
+          
+          <motion.div 
+            animate={{ 
+              x: [0, -120, 80, 0], 
+              y: [0, 60, -90, 0],
+              scale: [1, 0.9, 1.2, 1] 
+            }}
+            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+            className="ambient-glow top-[30%] -right-[15%] bg-brand-coral/5 fixed" 
+          />
 
-      <motion.div 
-        animate={{ 
-          opacity: [0.2, 0.4, 0.2]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="ambient-glow bottom-0 left-[20%] bg-[#A855F7]/10 fixed" 
-      />
+          <motion.div 
+            animate={{ 
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="ambient-glow bottom-0 left-[20%] bg-[#A855F7]/10 fixed" 
+          />
+        </>
+      )}
 
 
 
@@ -1509,8 +1525,8 @@ export default function App() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-in-out ${
           scrolled 
-            ? 'top-4 w-[95%] max-w-[900px] bg-[#FDFBFF]/95 backdrop-blur-xl rounded-full h-16 border-2 border-[#A855F7]/40 shadow-[0_0_25px_rgba(168,85,247,0.3)] px-4' 
-            : 'top-0 w-full bg-transparent h-28 px-8 border-b border-white/5'
+            ? 'top-4 w-[95%] max-w-[900px] bg-[#FDFBFF]/95 backdrop-blur-md md:backdrop-blur-xl rounded-full h-16 border-2 border-[#A855F7]/40 shadow-[0_0_25px_rgba(168,85,247,0.3)] px-4' 
+            : 'top-0 w-full bg-[#0D0718]/40 md:bg-transparent h-20 md:h-28 px-4 md:px-8 border-b border-white/5'
         }`}
       >
         <div className="h-full flex items-center justify-between relative">
@@ -1531,10 +1547,10 @@ export default function App() {
               ))}
             </div>
 
-            {/* Mobile Links (Left) - Only when scrolled */}
-            <div className={`flex md:hidden items-center gap-3 text-[9px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'flex text-brand-deep' : 'hidden text-white/90'}`}>
+            {/* Mobile Links (Left) */}
+            <div className={`flex md:hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
               <a href="#hero" className="hover:text-brand-magenta transition-colors">Home</a>
-              <a href="#quem-sou-eu" className="hover:text-brand-magenta transition-colors whitespace-nowrap">Quem Sou Eu</a>
+              <a href="#quem-sou-eu" className="hover:text-brand-magenta transition-colors whitespace-nowrap">Quem Sou</a>
             </div>
           </div>
           
@@ -1576,10 +1592,9 @@ export default function App() {
               </a>
             </div>
 
-            {/* Mobile Links (Right) - Only when scrolled */}
-            <div className={`flex md:hidden items-center gap-3 text-[9px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'flex text-brand-deep' : 'hidden text-white/90'}`}>
-              <a href="#faq" className="hover:text-brand-magenta transition-colors whitespace-nowrap">FAQ</a>
-              <a href="#metodo" className="hover:text-brand-magenta transition-colors whitespace-nowrap">O Método</a>
+            {/* Mobile Links (Right) */}
+            <div className={`flex md:hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
+              <a href="#metodo" className="hover:text-brand-magenta transition-colors whitespace-nowrap">Método</a>
             </div>
           </div>
         </div>
@@ -1610,8 +1625,8 @@ export default function App() {
         <div className="absolute inset-0 bg-[#0A0514] overflow-hidden">
           {/* Subtle atmospheric gradients */}
           <div className="absolute inset-0 bg-linear-to-br from-[#1A0B2E]/40 via-[#0F051D] to-[#050209]/60" />
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-magenta/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-indigo/10 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4" />
+          <div className={`absolute top-0 right-0 w-[800px] h-[800px] bg-brand-magenta/5 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full -translate-y-1/2 translate-x-1/2`} />
+          <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-indigo/10 ${isTouch ? 'blur-[60px]' : 'blur-[100px]'} rounded-full translate-y-1/2 -translate-x-1/4`} />
           
           {/* 3D Constellations layer */}
           <div className="absolute inset-0 z-10 opacity-90">
@@ -2010,7 +2025,7 @@ export default function App() {
             className="text-center max-w-5xl mx-auto mb-20 px-6 relative"
           >
             {/* Background Glow for Text Content */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[120%] bg-brand-magenta/5 blur-[100px] -z-10 rounded-full opacity-100 transition-opacity duration-1000" />
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[120%] bg-brand-magenta/5 ${isTouch ? 'blur-[60px]' : 'blur-[100px]'} -z-10 rounded-full opacity-100 transition-opacity duration-1000`} />
 
             <motion.div
               variants={{
@@ -2215,7 +2230,7 @@ export default function App() {
                       },
                     ],
                   ][currentPage].map((item, i) => (
-                    <DiagnosticCard key={`${currentPage}-${i}`} item={item} index={i} />
+                    <DiagnosticCard key={`${currentPage}-${i}`} item={item} index={i} isTouch={isTouch} />
                   ))}
                 </motion.div>
               </AnimatePresence>
@@ -2465,6 +2480,7 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               onMouseMove={(e) => {
+                if (isTouch) return;
                 const rect = e.currentTarget.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -2588,7 +2604,7 @@ export default function App() {
       <Section id="quem-sou-eu" className="bg-[#0D0718] py-16 sm:py-24 relative overflow-hidden z-10 isolate text-white">
         {/* Glowing Particle Background - Purple and Pink Tones */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {[...Array(80)].map((_, i) => {
+          {[...Array(isTouch ? 20 : 80)].map((_, i) => {
             const size = Math.random() * 2.5 + 1.2;
             const colors = ['#F0ABFC', '#D946EF', '#C77DFF', '#E879F9', '#FFD6FF']; // Brighter palette
             const color = colors[i % colors.length];
@@ -2873,21 +2889,21 @@ export default function App() {
       <Section id="metodo" className="bg-linear-to-br from-[#F5E6FF] via-[#D8B4FE] to-[#F3E8FF] text-[#1A0B2E] border-y border-brand-lilac/30 relative overflow-hidden py-16 md:py-32 shadow-[inset_0_0_150px_rgba(168,85,247,0.2)]">
         {/* Atmospheric Background matching Jornada */}
         <div className="absolute inset-0 bg-linear-to-br from-white/10 via-[#C084FC]/30 to-white/10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-magenta/20 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-plum/20 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none z-0" />
+        <div className={`absolute top-0 right-0 w-[700px] h-[700px] bg-brand-magenta/20 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none z-0`} />
+        <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-plum/20 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none z-0`} />
         
         {/* Glowing Systemic Tree Background */}
         <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-end opacity-30 md:opacity-70 overflow-hidden mix-blend-screen">
           <ConstellationLayer />
           <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice" className="w-[1400px] h-[900px] text-[#E9D5FF] drop-shadow-[0_0_15px_rgba(233,213,255,0.4)] absolute bottom-0 left-1/2 -translate-x-1/2 min-w-full min-h-full">
-            <RecursiveTreeStatic x={150} y={900} length={220} angle={-65} depth={1} maxDepth={8} />
-            <RecursiveTreeStatic x={1250} y={900} length={220} angle={-115} depth={1} maxDepth={8} />
+            <RecursiveTreeStatic x={150} y={900} length={220} angle={-65} depth={1} maxDepth={isTouch ? 5 : 8} />
+            <RecursiveTreeStatic x={1250} y={900} length={220} angle={-115} depth={1} maxDepth={isTouch ? 5 : 8} />
           </svg>
         </div>
 
         {/* Floating Background Particles */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden mix-blend-overlay">
-          {[...Array(250)].map((_, i) => {
+          {[...Array(isTouch ? 40 : 250)].map((_, i) => {
             const size = Math.random() * 2 + 1;
             const colors = ['#FFFFFF', '#FDE68A', '#E9D5FF', '#D8B4FE'];
             const color = colors[i % colors.length];
@@ -3329,8 +3345,8 @@ export default function App() {
       <Section id="final-cta" className="bg-linear-to-br from-[#FDFCFE] via-[#F5E8FF] to-[#FAF5FF] relative overflow-hidden text-[#1A0B2E] border-t border-brand-lilac/30">
         {/* Subtle Background Glows */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-magenta/10 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#581C87]/10 blur-[120px] rounded-full" />
+          <div className={`absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-magenta/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full`} />
+          <div className={`absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#581C87]/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full`} />
         </div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
