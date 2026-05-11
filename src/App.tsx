@@ -1582,23 +1582,24 @@ export default function App() {
             <div className={`hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-500 ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
               <a 
                 href="#metodo" 
-                className="group relative py-2 transition-all hover:text-[#C084FC]"
+                className={`px-4 py-2 rounded-full transition-all duration-300 ${scrolled ? 'bg-brand-magenta/10 hover:bg-brand-magenta/20 text-brand-magenta border border-brand-magenta/20' : 'hover:text-[#C084FC] relative group'}`}
               >
                 O Método
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#C084FC] to-[#A855F7] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#A855F7]" />
+                {!scrolled && <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#C084FC] to-[#A855F7] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#A855F7]" />}
               </a>
               <a 
                 href="#faq" 
-                className="group relative py-2 transition-all hover:text-[#C084FC]"
+                className={`px-4 py-2 rounded-full transition-all duration-300 ${scrolled ? 'bg-brand-magenta/10 hover:bg-brand-magenta/20 text-brand-magenta border border-brand-magenta/20' : 'hover:text-[#C084FC] relative group'}`}
               >
                 FAQ
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#C084FC] to-[#A855F7] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#A855F7]" />
+                {!scrolled && <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#C084FC] to-[#A855F7] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#A855F7]" />}
               </a>
             </div>
 
             {/* Mobile Links (Right) */}
-            <div className={`flex md:hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
-              <a href="#metodo" className="hover:text-brand-magenta transition-colors whitespace-nowrap">Método</a>
+            <div className={`flex md:hidden items-center gap-2 text-[10px] font-bold uppercase tracking-[0.1em] ${scrolled ? 'text-brand-deep' : 'text-white/90'}`}>
+              <a href="#metodo" className={`px-2.5 py-1.5 rounded-full transition-all ${scrolled ? 'bg-brand-magenta/10 text-brand-magenta border border-brand-magenta/20' : 'hover:text-brand-magenta'}`}>Método</a>
+              <a href="#faq" className={`px-2.5 py-1.5 rounded-full transition-all ${scrolled ? 'bg-brand-magenta/10 text-brand-magenta border border-brand-magenta/20' : 'hover:text-brand-magenta'}`}>FAQ</a>
             </div>
           </div>
         </div>
