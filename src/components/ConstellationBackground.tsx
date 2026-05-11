@@ -19,7 +19,15 @@ export default function ConstellationBackground() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const updateSize = () => {
+        const width = container.clientWidth || window.innerWidth;
+        const height = container.clientHeight || window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    };
+    
+    updateSize();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isTouchDevice ? 1 : 1.5));
     container.appendChild(renderer.domElement);
 
@@ -278,16 +286,15 @@ export default function ConstellationBackground() {
 
     animate();
 
-    // Handle Resize
-    const handleResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
+    // Handle Resize with ResizeObserver for better container tracking
+    const resizeObserver = new ResizeObserver(() => {
+        updateSize();
+    });
+    resizeObserver.observe(container);
 
     return () => {
         cancelAnimationFrame(requestRef);
+        resizeObserver.disconnect();
         if (!isTouchDevice) {
             window.removeEventListener('mousemove', handleMouseMove);
         }

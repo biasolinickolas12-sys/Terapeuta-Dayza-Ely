@@ -1618,7 +1618,7 @@ export default function App() {
       {/* Hero Section - Image Model Layout */}
       <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20">
         {/* Shooting Stars Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
           {[...Array(isTouch ? 8 : 15)].map((_, i) => (
             <div 
               key={i}
@@ -1634,17 +1634,17 @@ export default function App() {
         </div>
 
         {/* Background Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 w-full h-full bg-black/40 z-10" />
         
         {/* Full Screen Background - 100% Atmosphere */}
-        <div className="absolute inset-0 bg-[#0A0514] overflow-hidden">
+        <div className="absolute inset-0 w-full h-full bg-[#0A0514] overflow-hidden">
           {/* Subtle atmospheric gradients */}
           <div className="absolute inset-0 bg-linear-to-br from-[#1A0B2E]/40 via-[#0F051D] to-[#050209]/60" />
           <div className={`absolute top-0 right-0 w-[800px] h-[800px] bg-brand-magenta/5 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full -translate-y-1/2 translate-x-1/2`} />
           <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-indigo/10 ${isTouch ? 'blur-[60px]' : 'blur-[100px]'} rounded-full translate-y-1/2 -translate-x-1/4`} />
           
           {/* 3D Constellations layer */}
-          <div className="absolute inset-0 z-10 opacity-90">
+          <div className="absolute inset-0 w-full h-full z-10 opacity-90">
             <ConstellationBackground />
           </div>
         </div>
