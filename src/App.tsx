@@ -1123,7 +1123,7 @@ const ProductsSection = () => {
         "Acesso via canal exclusivo no Telegram."
       ],
       cta: "Quero Prosperar",
-      link: `${whatsappLink}?text=Olá,%20quero%20adquirir%20o%20Protocolo%20Quebra%20de%20Maldições`
+      link: "https://pay.cakto.com.br/333ttuf_880958"
     },
     {
       id: "ativacoes-magneticas",
