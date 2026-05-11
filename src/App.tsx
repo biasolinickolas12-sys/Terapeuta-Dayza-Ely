@@ -1104,7 +1104,7 @@ const ProductsSection = () => {
         "Acesso via canal exclusivo no Telegram."
       ],
       cta: "Quero me Reconectar",
-      link: `${whatsappLink}?text=Olá,%20quero%20adquirir%20o%20Protocolo%20Orações%20Proféticas`
+      link: "https://pay.cakto.com.br/35923f3_880839"
     },
     {
       id: "quebra-maldicoes",
