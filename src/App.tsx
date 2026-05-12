@@ -1161,7 +1161,7 @@ const ProductsSection = () => {
         "Acesso via canal exclusivo no Telegram."
       ],
       cta: "Quero me Transformar",
-      link: `${whatsappLink}?text=Olá,%20quero%20adquirir%20as%2021%20Constelações%20Guiadas`
+      link: "https://pay.cakto.com.br/moajnj8_881552"
     }
   ];
 
