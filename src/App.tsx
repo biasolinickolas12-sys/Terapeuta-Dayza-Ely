@@ -1395,17 +1395,12 @@ const ExitIntentPopup = ({ isOpen, onClose, whatsappLink }: { isOpen: boolean; o
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <motion.a
-                  href="#vendas"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onClose();
-                    document.getElementById('vendas')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  href="https://pay.cakto.com.br/35923f3_880839"
                   whileHover={{ scale: 1.05, boxShadow: "0 0 40px #D946EF, inset 0 0 20px #D946EF" }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#A02D68] to-[#581C87] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all border-2 border-[#D946EF] shadow-[0_0_25px_#D946EF,inset_0_0_12px_#D946EF]"
                 >
-                  <span>Ver Opções de Cura</span>
+                  <span>Quero Minha Cura</span>
                   <ArrowRight className="w-5 h-5" />
                 </motion.a>
                 
