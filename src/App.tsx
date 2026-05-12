@@ -1142,7 +1142,7 @@ const ProductsSection = () => {
         "Acesso via canal exclusivo no Telegram."
       ],
       cta: "Quero ser Magnética",
-      link: `${whatsappLink}?text=Olá,%20quero%20adquirir%20o%20Protocolo%20Ativações%20Magnéticas`
+      link: "https://pay.cakto.com.br/ymwrj6z_881501"
     },
     {
       id: "transformacao-21",
