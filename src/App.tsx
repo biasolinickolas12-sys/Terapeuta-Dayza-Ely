@@ -1342,6 +1342,155 @@ const ProductsSection = () => {
   );
 };
 
+const PersonalizedSessionSection = () => {
+  const whatsappLink = "https://wa.me/554584055138";
+  
+  const benefits = [
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-brand-magenta" />,
+      text: "Condução segura, acolhedora e profunda"
+    },
+    {
+      icon: <Eye className="w-6 h-6 text-brand-magenta" />,
+      text: "Acesso às raízes emocionais e sistêmicas do seu problema"
+    },
+    {
+      icon: <Zap className="w-6 h-6 text-brand-magenta" />,
+      text: "Liberação de padrões e reorganização energética"
+    },
+    {
+      icon: <Sunrise className="w-6 h-6 text-brand-magenta" />,
+      text: "Clareza, leveza e reconexão com sua força interior"
+    }
+  ];
+
+  return (
+    <Section id="sessao-personalizada" className="bg-[#0D0718] py-24 relative overflow-hidden text-white">
+      {/* Background elements */}
+      <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#581845]/10 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[#9CAF88]/5 blur-[160px] rounded-full pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          
+          {/* Left: Content */}
+          <div className="flex-1 space-y-8 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-brand-magenta/30 bg-brand-magenta/5 backdrop-blur-sm mb-4"
+            >
+              <Sparkles className="w-4 h-4 text-brand-magenta" />
+              <span className="text-white font-accent font-bold uppercase tracking-[0.4em] text-[10px]">Atendimento Exclusivo</span>
+            </motion.div>
+
+            <h2 className="text-4xl md:text-6xl font-display leading-tight text-white">
+              Sessão Individual <br />
+              <span className="heading-serif italic text-brand-magenta drop-shadow-sm">Personalizada</span> Online
+            </h2>
+
+            <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Um mergulho profundo no seu campo sistêmico para identificar e liberar aquilo que trava sua evolução, em um espaço de total acolhimento e segurança.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-4">
+              {benefits.map((benefit, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-magenta/40 transition-all duration-500 group"
+                >
+                  <div className="p-3 rounded-xl bg-brand-magenta/10 group-hover:bg-brand-magenta/20 transition-colors shrink-0">
+                    {benefit.icon}
+                  </div>
+                  <span className="text-sm md:text-base font-medium text-slate-200 mt-1">{benefit.text}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="pt-8 flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+              <motion.a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 35px #D946EF, inset 0 0 15px #D946EF" }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#A02D68] to-[#581C87] text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all z-20 border-2 border-[#D946EF] shadow-[0_0_25px_#D946EF,inset_0_0_12px_#D946EF]"
+              >
+                <MessageCircle className="w-5 h-5 text-white" />
+                <span>Agendar via WhatsApp</span>
+              </motion.a>
+              
+              <div className="flex items-center gap-2 text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold">
+                <ShieldCheck className="w-4 h-4" />
+                Vagas Limitadas Mensalmente
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Decorative Graphic */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="flex-1 relative hidden lg:block"
+          >
+            <div className="relative w-full aspect-square max-w-md mx-auto flex items-center justify-center">
+              {/* Glowing Rings */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 border-2 border-brand-magenta/20 rounded-full border-dashed"
+              />
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-10 border border-brand-indigo/30 rounded-full"
+              />
+              
+              {/* Central Icon Container */}
+              <div className="relative w-48 h-48 md:w-64 md:h-64 bg-linear-to-br from-[#0D0718] via-[#1A0B2E] to-[#0D0718] rounded-full border-4 border-brand-magenta flex items-center justify-center shadow-[0_0_50px_rgba(217,70,239,0.3)] overflow-hidden group">
+                <div className="absolute inset-0 bg-brand-magenta/10 blur-2xl group-hover:bg-brand-magenta/20 transition-all duration-700" />
+                <SystemicTree className="w-24 h-24 md:w-32 md:h-32 text-brand-magenta drop-shadow-[0_0_20px_#D946EF] transition-transform duration-700 group-hover:scale-110" />
+              </div>
+
+              {/* Floating Sparkles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{ 
+                    y: [0, -30, 0],
+                    opacity: [0.2, 0.8, 0.2],
+                    scale: [0.8, 1.2, 0.8]
+                  }}
+                  transition={{ 
+                    duration: 4 + i, 
+                    repeat: Infinity, 
+                    delay: i * 0.7 
+                  }}
+                  className="absolute"
+                  style={{
+                    top: `${Math.random() * 80 + 10}%`,
+                    left: `${Math.random() * 80 + 10}%`,
+                  }}
+                >
+                  <Sparkles className="w-4 h-4 text-brand-magenta/60" />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </Section>
+  );
+};
+
+const ExitIntentPopup = ({ isOpen, onClose, whatsappLink }: { isOpen: boolean; onClose: () => void; whatsappLink: string }) => {
 
 const ExitIntentPopup = ({ isOpen, onClose, whatsappLink }: { isOpen: boolean; onClose: () => void; whatsappLink: string }) => {
   return (
@@ -3229,6 +3378,68 @@ export default function App() {
 
       {/* Sales Section */}
       <ProductsSection />
+
+      {/* Neon Pulse Transition Line - Star-centered (Personalized Session) */}
+      <div className="relative h-1 w-full z-30 pointer-events-none flex items-center justify-center overflow-visible">
+        <motion.div 
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 bg-linear-to-r from-transparent via-[#D946EF] to-transparent shadow-[0_0_40px_#D946EF,0_0_80px_rgba(217,70,239,0.5)]"
+          style={{ height: '3px' }}
+        />
+        
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.2, duration: 1.5, ease: "backOut" }}
+          className="relative z-10 flex items-center justify-center"
+        >
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-24 h-24 bg-[#A855F7] rounded-full blur-3xl opacity-40"
+          />
+          
+          <div className="relative z-20 flex items-center justify-center">
+            <div className="absolute inset-0 scale-125 bg-brand-magenta blur-xl opacity-60" />
+            
+            <svg 
+              width="48" 
+              height="48" 
+              viewBox="0 0 100 100" 
+              className="drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] drop-shadow-[0_0_20px_#D946EF]"
+            >
+              <path 
+                d="M 50 0 C 50 40 60 50 100 50 C 60 50 50 60 50 100 C 50 60 40 50 0 50 C 40 50 50 40 50 0 Z" 
+                fill="white"
+              />
+              <path 
+                d="M 50 15 C 50 45 55 50 85 50 C 55 50 50 55 50 85 C 50 55 45 50 15 50 C 45 50 50 45 50 15 Z" 
+                fill="url(#starGradient_Personalized)"
+                opacity="0.8"
+              />
+              <defs>
+                <radialGradient id="starGradient_Personalized" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                  <stop offset="0%" stopColor="#fff" />
+                  <stop offset="100%" stopColor="#D946EF" />
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div className="absolute w-[1px] h-16 bg-linear-to-b from-transparent via-white/60 to-transparent blur-[0.5px]" />
+          <div className="absolute h-[1px] w-16 bg-linear-to-r from-transparent via-white/60 to-transparent blur-[0.5px]" />
+        </motion.div>
+      </div>
+
+      {/* Personalized Session Section */}
+      <PersonalizedSessionSection />
 
       {/* Neon Pulse Transition Line - Star-centered (FAQ) */}
       <div className="relative h-1 w-full z-30 pointer-events-none flex items-center justify-center overflow-visible">
