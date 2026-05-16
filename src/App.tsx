@@ -3662,18 +3662,24 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Light Footer Section */}
-      <footer id="contato" className="bg-linear-to-br from-[#FDFCFE] via-[#F5E8FF] to-[#FAF5FF] py-20 relative overflow-hidden text-[#1A0B2E] border-t border-brand-lilac/30">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C084FC]/30 to-transparent" />
+      {/* Dark Footer Section */}
+      <footer id="contato" className="bg-[#0D0718] py-20 relative overflow-hidden text-white border-t border-brand-magenta/20">
+        {/* Atmospheric Background Glows */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className={`absolute top-0 right-0 w-[400px] h-[400px] bg-brand-magenta/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full -translate-y-1/2 translate-x-1/2 opacity-50`} />
+          <div className={`absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-indigo/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full translate-y-1/2 -translate-x-1/2 opacity-30`} />
+        </div>
+        
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-magenta/30 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center space-y-10">
             <div className="flex justify-center gap-2 mb-6">
-              <SystemicTree className="w-6 h-6 text-brand-magenta filter drop-shadow-[0_0_5px_rgba(217,70,239,0.3)]" />
-              <span className="font-accent font-bold tracking-[0.4em] uppercase text-xs text-[#3A2A56]">Constelação Sistêmica</span>
+              <SystemicTree className="w-6 h-6 text-brand-magenta filter drop-shadow-[0_0_10px_rgba(217,70,239,0.5)]" />
+              <span className="font-accent font-bold tracking-[0.4em] uppercase text-xs text-white/90">Constelação Sistêmica</span>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-[11px] font-bold uppercase tracking-[0.25em] text-[#581C87]/80">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-[11px] font-bold uppercase tracking-[0.25em] text-white/60">
               <a href="#hero" className="hover:text-brand-magenta transition-all hover:tracking-[0.3em]">Home</a>
               <a href="#quem-sou-eu" className="hover:text-brand-magenta transition-all hover:tracking-[0.3em]">Quem Sou Eu</a>
               <a href="#feedbacks" className="hover:text-brand-magenta transition-all hover:tracking-[0.3em]">Feedbacks</a>
@@ -3682,12 +3688,12 @@ export default function App() {
               <a href="#final-cta" className="hover:text-brand-magenta transition-all hover:tracking-[0.3em]">Transformação</a>
             </div>
 
-            <div className="text-[#3A2A56]/60 text-[10px] font-bold uppercase tracking-[0.2em] space-y-3">
+            <div className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] space-y-3">
               <p>© 2026 • Constelação Sistêmica Espiritual</p>
               <p>Todos os direitos reservados</p>
             </div>
             
-            <div className="flex justify-center gap-10 md:gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3A2A56]/40">
+            <div className="flex justify-center gap-10 md:gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
               <a href="#" className="hover:text-brand-magenta transition-colors">Termos</a>
               <a href="#" className="hover:text-brand-magenta transition-colors">Privacidade</a>
               <a href="#" className="hover:text-brand-magenta transition-colors">Cookies</a>
