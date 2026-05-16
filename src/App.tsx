@@ -829,16 +829,16 @@ const FAQSection = () => {
   ];
 
   return (
-    <Section id="faq" className="bg-[#0D0718] py-24 relative overflow-hidden border-y border-brand-magenta/20 shadow-[inset_0_0_150px_rgba(168,85,247,0.1)]">
+    <Section id="faq" className="bg-linear-to-br from-[#FDFCFE] via-[#F5E8FF] to-[#FAF5FF] py-24 relative overflow-hidden border-y border-brand-magenta/20">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-brand-magenta/10 blur-[120px] -z-10" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#C084FC]/10 blur-[120px] -z-10" />
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-brand-magenta/5 blur-[120px] -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#C084FC]/5 blur-[120px] -z-10" />
 
-      {/* Glowing Particle Background for FAQ */}
+      {/* Glowing Particle Background for FAQ - Adjusted for Light Theme */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {[...Array(isTouch ? 10 : 30)].map((_, i) => {
           const size = Math.random() * 3 + 1;
-          const colors = ['#A855F7', '#C084FC', '#E879F9', '#D946EF', '#FFFFFF'];
+          const colors = ['#A855F7', '#C084FC', '#E879F9', '#D946EF', '#AE2D68'];
           const color = colors[i % colors.length];
           return (
             <motion.div
@@ -850,13 +850,13 @@ const FAQSection = () => {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 backgroundColor: color,
-                opacity: Math.random() * 0.5 + 0.2,
+                opacity: Math.random() * 0.3 + 0.1,
                 boxShadow: `0 0 ${size * 3}px ${color}`,
               }}
               animate={{
                 y: [0, Math.random() * -40 - 20],
-                opacity: [0, Math.random() * 0.6 + 0.4, 0],
-                scale: [0, Math.random() * 1.5 + 0.5, 0],
+                opacity: [0, 0.4, 0],
+                scale: [0, 1, 0],
               }}
               transition={{
                 duration: Math.random() * 4 + 4,
@@ -877,14 +877,14 @@ const FAQSection = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-4 mb-4"
           >
-            <div className="flex items-center gap-2 border border-brand-magenta/30 bg-[#0D0718] px-5 py-2 rounded-[2rem] shadow-[0_4px_15px_rgba(0,0,0,0.3)]">
+            <div className="flex items-center gap-2 border border-brand-magenta/20 bg-white/50 backdrop-blur-md px-5 py-2 rounded-[2rem] shadow-sm">
               <HelpCircle className="w-4 h-4 text-brand-magenta" />
-              <span className="text-white font-accent font-black uppercase tracking-[0.4em] text-[10px]">FAQ</span>
+              <span className="text-[#1A0B2E] font-accent font-black uppercase tracking-[0.4em] text-[10px]">FAQ</span>
             </div>
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display text-white tracking-tight mb-2 drop-shadow-sm uppercase">
-            Perguntas <span className="heading-serif italic text-brand-magenta border-b-0 drop-shadow-none uppercase">Frequentes</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display text-[#0F0716] tracking-tight mb-2 uppercase">
+            Perguntas <span className="heading-serif italic text-brand-magenta border-b-0 uppercase">Frequentes</span>
           </h2>
           <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-brand-magenta/30 to-transparent mx-auto mt-6 mb-2" />
         </div>
@@ -899,8 +899,8 @@ const FAQSection = () => {
               transition={{ delay: index * 0.1 }}
               className={`relative overflow-hidden transition-all duration-500 rounded-3xl ${
                 activeIndex === index 
-                ? 'bg-white/10 shadow-[0_8px_30px_rgba(217,70,239,0.1)] border border-brand-magenta/40' 
-                : 'bg-white/5 hover:bg-white/10 border border-white/10'
+                ? 'bg-white shadow-[0_20px_50px_rgba(168,85,247,0.15)] border border-brand-magenta/30' 
+                : 'bg-white/40 hover:bg-white/60 border border-white/20'
               }`}
             >
               {activeIndex === index && (
@@ -910,15 +910,15 @@ const FAQSection = () => {
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 className="w-full px-6 md:px-8 py-6 flex items-center justify-between text-left group"
               >
-                <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 pr-4 ${
-                  activeIndex === index ? 'text-brand-magenta' : 'text-white/95 group-hover:text-white'
+                <span className={`text-lg md:text-xl font-bold transition-colors duration-300 pr-4 ${
+                  activeIndex === index ? 'text-brand-magenta' : 'text-[#1A0B2E] group-hover:text-brand-magenta'
                 }`}>
                   {faq.question}
                 </span>
                 <div className={`shrink-0 p-2 rounded-full border transition-all duration-500 flex items-center justify-center ${
                   activeIndex === index 
                   ? 'border-brand-magenta bg-brand-magenta text-white rotate-180 shadow-[0_0_15px_rgba(217,70,239,0.4)]' 
-                  : 'border-white/20 text-white/70 bg-white/5 group-hover:bg-white/10 group-hover:border-white/40 group-hover:text-white'
+                  : 'border-brand-magenta/20 text-brand-magenta bg-brand-magenta/5 group-hover:bg-brand-magenta group-hover:text-white'
                 }`}>
                   {activeIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </div>
@@ -932,7 +932,7 @@ const FAQSection = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                   >
-                    <div className="px-6 md:px-8 pb-8 text-white/90 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                    <div className="px-6 md:px-8 pb-8 text-[#3A2A56] font-medium leading-relaxed text-base md:text-lg whitespace-pre-line">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -948,17 +948,17 @@ const FAQSection = () => {
           viewport={{ once: true }}
           className="mt-16 text-center flex flex-col items-center"
         >
-          <p className="text-[#3A2A56] font-medium mb-6 text-lg">Ainda tem alguma dúvida específica?</p>
+          <p className="text-[#3A2A56] font-bold mb-6 text-lg">Ainda tem alguma dúvida específica?</p>
           <motion.a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(160,45,104,0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 30px rgba(160,45,104,0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#A02D68] to-[#581C87] text-white font-semibold text-lg hover:from-[#832253] hover:to-[#411267] transition-all shadow-[0_8px_20px_rgba(160,45,104,0.3)]"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-[#A02D68] to-[#581C87] text-white font-bold text-lg shadow-[0_10px_25px_rgba(160,45,104,0.2)]"
           >
-            Fale com nossa equipe
-            <MessageCircle className="w-5 h-5" />
+            Fale com minha equipe
+            <MessageCircle className="w-6 h-6" />
           </motion.a>
         </motion.div>
       </div>
@@ -3546,80 +3546,117 @@ export default function App() {
       </div>
 
       {/* Final CTA Section */}
-      <Section id="final-cta" className="bg-linear-to-br from-[#FDFCFE] via-[#F5E8FF] to-[#FAF5FF] relative overflow-hidden text-[#1A0B2E] border-t border-brand-lilac/30">
-        {/* Subtle Background Glows */}
+      <Section id="final-cta" className="bg-[#0D0718] relative overflow-hidden text-white border-t border-brand-magenta/20 py-24">
+        {/* Intense Background Glows - Cyber Theme */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className={`absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-magenta/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full`} />
-          <div className={`absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#581C87]/10 ${isTouch ? 'blur-[80px]' : 'blur-[120px]'} rounded-full`} />
+          <div className={`absolute top-0 right-1/4 w-[600px] h-[600px] bg-brand-magenta/15 ${isTouch ? 'blur-[100px]' : 'blur-[160px]'} rounded-full opacity-60`} />
+          <div className={`absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-brand-indigo/10 ${isTouch ? 'blur-[100px]' : 'blur-[160px]'} rounded-full opacity-40`} />
+          
+          {/* Animated Stars Layer */}
+          <div className="absolute inset-0 opacity-40">
+            <ConstellationLayer />
+          </div>
         </div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
             {/* Left Column */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display leading-[1.2] mb-8 text-[#0F0716]">
-                Chegou a sua hora de <span className="heading-serif italic text-brand-magenta block mt-2 lg:inline lg:mt-0 lg:ml-2 drop-shadow-sm">mudar isso</span>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-brand-magenta/30 bg-brand-magenta/10 backdrop-blur-sm mb-4"
+              >
+                <Zap className="w-4 h-4 text-brand-magenta" />
+                <span className="text-white font-accent font-bold uppercase tracking-[0.4em] text-[10px]">O Próximo Passo</span>
+              </motion.div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-display leading-[1.1] text-white text-glow-magenta">
+                Chegou a sua hora de <br />
+                <span className="heading-serif italic text-brand-magenta drop-shadow-sm">mudar isso</span>
               </h2>
               
-              <div className="text-lg md:text-xl text-[#1E1135] font-medium leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
-                <p className="mb-4">Eu vou te direcionar com clareza, leveza e profundidade.</p>
-                <p className="text-[#0F0716] font-bold text-xl md:text-2xl flex items-center justify-center lg:justify-start gap-3">
-                  <AlertTriangle className="w-6 h-6 text-brand-magenta shrink-0" />
-                  Você não precisa carregar tudo isso sozinha.
-                </p>
+              <div className="text-lg md:text-xl text-slate-300 font-light leading-relaxed max-w-xl mx-auto lg:mx-0 space-y-6">
+                <p>Eu vou te direcionar com clareza, leveza e profundidade, rompendo as correntes que te prendem ao passado.</p>
+                <div className="flex items-center justify-center lg:justify-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <AlertTriangle className="w-6 h-6 text-brand-magenta shrink-0 animate-pulse" />
+                  <p className="text-white font-bold text-lg md:text-xl leading-tight">
+                    Você não precisa carregar tudo isso sozinha.
+                  </p>
+                </div>
               </div>
- 
-              <motion.button
-                onClick={() => document.getElementById('vendas')?.scrollIntoView({ behavior: 'smooth' })}
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(217,70,239,0.6)" }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-4 bg-gradient-to-r from-brand-magenta to-[#581C87] text-white px-8 py-4 md:px-12 md:py-6 rounded-full font-black uppercase tracking-[0.25em] text-sm md:text-base transition-all z-20 shadow-[0_0_20px_rgba(217,70,239,0.4)] border-2 border-brand-magenta"
-              >
-                <HandFist className="w-6 h-6" />
-                <span>Já tomei minha decisão</span>
-              </motion.button>
+  
+              <div className="pt-6">
+                <motion.button
+                  onClick={() => document.getElementById('vendas')?.scrollIntoView({ behavior: 'smooth' })}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(217,70,239,0.5)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#AE2D68] to-[#660F56] text-white px-10 py-5 md:px-14 md:py-6 rounded-full font-black uppercase tracking-[0.25em] text-sm md:text-base transition-all z-20 shadow-[0_0_25px_rgba(174,45,104,0.4)] border-2 border-[#AE2D68]"
+                >
+                  <HandFist className="w-6 h-6" />
+                  <span>Já tomei minha decisão</span>
+                </motion.button>
+              </div>
             </motion.div>
- 
-            {/* Right Column */}
+  
+            {/* Right Column - Premium Dark Card */}
             <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.9, x: 30 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white border-4 border-brand-magenta shadow-[0_0_30px_rgba(217,70,239,0.4),inset_0_0_15px_rgba(217,70,239,0.1)] rounded-[3rem] p-8 md:p-12 text-center lg:text-left max-w-lg mx-auto w-full relative group"
+              className="bg-[#0D0718]/80 backdrop-blur-xl border-4 border-brand-magenta/40 shadow-[0_30px_100px_rgba(0,0,0,0.5),inset_0_0_30px_rgba(217,70,239,0.1)] rounded-[3rem] p-8 md:p-12 text-center lg:text-left max-w-lg mx-auto w-full relative group overflow-hidden"
             >
-              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <SystemicTree className="w-24 h-24 text-brand-magenta" />
+              {/* Internal decorative glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-magenta/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="relative z-10">
+                <p className="text-brand-magenta text-xl font-black mb-10 uppercase tracking-widest border-b border-white/10 pb-6 flex items-center justify-center lg:justify-start gap-4">
+                   Você pode continuar:
+                </p>
+                
+                <ul className="space-y-8 text-lg md:text-xl text-slate-200 font-medium mb-12">
+                  <li className="flex items-center justify-center lg:justify-start gap-5 group/item">
+                    <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_12px_#D946EF] group-hover/item:scale-125 transition-transform" />
+                    <span className="group-hover/item:text-white transition-colors">Se anulando</span>
+                  </li>
+                  <li className="flex items-center justify-center lg:justify-start gap-5 group/item">
+                    <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_12px_#D946EF] group-hover/item:scale-125 transition-transform" />
+                    <span className="group-hover/item:text-white transition-colors">Sofrendo em silêncio</span>
+                  </li>
+                  <li className="flex items-center justify-center lg:justify-start gap-5 text-left group/item">
+                    <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_12px_#D946EF] group-hover/item:scale-125 transition-transform" />
+                    <span className="group-hover/item:text-white transition-colors">Repetindo histórias que não são suas</span>
+                  </li>
+                </ul>
+                
+                <div className="pt-8 border-t border-white/10 mt-4">
+                  <p className="text-xl md:text-2xl text-white font-black uppercase tracking-[0.2em] leading-relaxed italic">
+                    Ou pode tomar uma<br className="hidden lg:block" />
+                    <span className="text-brand-magenta not-italic relative inline-block mt-2">
+                      decisão hoje.
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
+                        viewport={{ once: true }}
+                        className="absolute -bottom-1 left-0 h-1 bg-brand-magenta shadow-[0_0_10px_#D946EF]" 
+                      />
+                    </span>
+                  </p>
+                </div>
               </div>
 
-              <p className="text-[#581C87] text-xl font-black mb-10 uppercase tracking-widest border-b border-brand-lilac/20 pb-4">
-                Você pode continuar:
-              </p>
-              <ul className="space-y-8 text-lg md:text-xl text-[#3A2A56] font-bold mb-12">
-                <li className="flex items-center justify-center lg:justify-start gap-5">
-                  <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_10px_rgba(217,70,239,0.5)]" />
-                  Se anulando
-                </li>
-                <li className="flex items-center justify-center lg:justify-start gap-5">
-                  <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_10px_rgba(217,70,239,0.5)]" />
-                  Sofrendo em silêncio
-                </li>
-                <li className="flex items-center justify-center lg:justify-start gap-5 text-left">
-                  <div className="w-3 h-3 rounded-full bg-brand-magenta shrink-0 shadow-[0_0_10px_rgba(217,70,239,0.5)]" />
-                  Repetindo histórias que não são suas
-                </li>
-              </ul>
-              
-              <p className="text-xl md:text-2xl text-[#0F0716] font-black uppercase tracking-[0.2em] pt-8 border-t-2 border-brand-lilac/30 mt-4 leading-relaxed italic">
-                Ou pode tomar uma<br className="hidden lg:block lg:mb-1" />
-                <span className="text-brand-magenta not-italic underline decoration-brand-lilac/30 underline-offset-8">decisão hoje.</span>
-              </p>
+              {/* Bottom right decorative icon */}
+              <div className="absolute bottom-6 right-6 opacity-10 group-hover:opacity-20 transition-all duration-700 group-hover:scale-110">
+                <SystemicTree className="w-20 h-20 text-brand-magenta" />
+              </div>
             </motion.div>
           </div>
         </div>
