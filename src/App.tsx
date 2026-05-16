@@ -1394,20 +1394,35 @@ const PersonalizedSessionSection = () => {
               Um mergulho profundo no seu campo sistêmico para identificar e liberar aquilo que trava sua evolução, em um espaço de total acolhimento e segurança.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 pt-8">
               {benefits.map((benefit, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-magenta/40 hover:bg-white/10 transition-all duration-500 group shadow-lg"
+                  transition={{ delay: i * 0.12, duration: 0.6 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="group relative flex items-center gap-6 p-7 rounded-[2rem] bg-white/5 border border-white/10 hover:border-brand-magenta/60 hover:bg-white/10 transition-all duration-500 shadow-2xl overflow-hidden backdrop-blur-sm"
                 >
-                  <div className="p-3 rounded-xl bg-brand-magenta/10 group-hover:bg-brand-magenta/20 transition-all duration-500 shrink-0 group-hover:scale-110">
-                    {benefit.icon}
+                  {/* Internal Shine Effect */}
+                  <div className="card-shine opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                  
+                  {/* Decorative corner glow */}
+                  <div className="absolute -top-10 -left-10 w-24 h-24 bg-brand-magenta/10 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                  <div className="relative z-10 p-4 rounded-2xl bg-brand-magenta/10 border border-brand-magenta/20 group-hover:bg-brand-magenta/25 group-hover:border-brand-magenta/40 transition-all duration-500 shrink-0 shadow-[inset_0_0_15px_rgba(174,45,104,0.1)] group-hover:shadow-[inset_0_0_20px_rgba(174,45,104,0.3),0_0_20px_rgba(174,45,104,0.2)]">
+                    <motion.div
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      {benefit.icon}
+                    </motion.div>
                   </div>
-                  <span className="text-sm md:text-base font-medium text-slate-200 transition-colors group-hover:text-white">{benefit.text}</span>
+                  
+                  <span className="relative z-10 text-base md:text-lg font-semibold text-slate-200 leading-tight transition-colors group-hover:text-white tracking-tight">
+                    {benefit.text}
+                  </span>
                 </motion.div>
               ))}
             </div>
