@@ -1334,7 +1334,15 @@ const ProductsSection = () => {
           <span className="text-[#3A2A56] text-xs font-bold uppercase tracking-widest">Suporte Vitalício</span>
         </div>
         <div className="flex items-center gap-3">
-    const PersonalizedSessionSection = () => {
+          <BookOpen className="w-6 h-6 text-[#A02D68]" />
+          <span className="text-[#3A2A56] text-xs font-bold uppercase tracking-widest">Método Único</span>
+        </div>
+      </div>
+    </Section>
+  );
+};
+
+const PersonalizedSessionSection = () => {
   const whatsappLink = "https://wa.me/554584055138";
   
   const benefits = [
