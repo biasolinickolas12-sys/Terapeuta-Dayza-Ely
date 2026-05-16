@@ -1334,15 +1334,7 @@ const ProductsSection = () => {
           <span className="text-[#3A2A56] text-xs font-bold uppercase tracking-widest">Suporte Vitalício</span>
         </div>
         <div className="flex items-center gap-3">
-          <BookOpen className="w-6 h-6 text-[#A02D68]" />
-          <span className="text-[#3A2A56] text-xs font-bold uppercase tracking-widest">Método Único</span>
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const PersonalizedSessionSection = () => {
+    const PersonalizedSessionSection = () => {
   const whatsappLink = "https://wa.me/554584055138";
   
   const benefits = [
@@ -1367,10 +1359,10 @@ const PersonalizedSessionSection = () => {
   return (
     <Section id="sessao-personalizada" className="bg-[#0D0718] py-24 relative overflow-hidden text-white">
       {/* Background elements */}
-      <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#581845]/10 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[#9CAF88]/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-brand-magenta/10 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-brand-indigo/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
           {/* Left: Content */}
@@ -1385,7 +1377,7 @@ const PersonalizedSessionSection = () => {
               <span className="text-white font-accent font-bold uppercase tracking-[0.4em] text-[10px]">Atendimento Exclusivo</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-6xl font-display leading-tight text-white">
+            <h2 className="text-4xl md:text-6xl font-display leading-tight text-white text-glow-magenta">
               Sessão Individual <br />
               <span className="heading-serif italic text-brand-magenta drop-shadow-sm">Personalizada</span> Online
             </h2>
@@ -1399,15 +1391,15 @@ const PersonalizedSessionSection = () => {
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-magenta/40 transition-all duration-500 group"
+                  className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-magenta/40 hover:bg-white/10 transition-all duration-500 group shadow-lg"
                 >
-                  <div className="p-3 rounded-xl bg-brand-magenta/10 group-hover:bg-brand-magenta/20 transition-colors shrink-0">
+                  <div className="p-3 rounded-xl bg-brand-magenta/10 group-hover:bg-brand-magenta/20 transition-all duration-500 shrink-0 group-hover:scale-110">
                     {benefit.icon}
                   </div>
-                  <span className="text-sm md:text-base font-medium text-slate-200 mt-1">{benefit.text}</span>
+                  <span className="text-sm md:text-base font-medium text-slate-200 transition-colors group-hover:text-white">{benefit.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -1417,70 +1409,55 @@ const PersonalizedSessionSection = () => {
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 35px #D946EF, inset 0 0 15px #D946EF" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 35px #AE2D68, inset 0 0 15px #AE2D68" }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#A02D68] to-[#581C87] text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all z-20 border-2 border-[#D946EF] shadow-[0_0_25px_#D946EF,inset_0_0_12px_#D946EF]"
+                className="inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#AE2D68] to-[#660F56] text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-sm transition-all z-20 border-2 border-[#AE2D68] shadow-[0_0_25px_#AE2D68,inset_0_0_12px_#AE2D68]"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
                 <span>Agendar via WhatsApp</span>
               </motion.a>
               
-              <div className="flex items-center gap-2 text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold">
-                <ShieldCheck className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-white/50 text-[10px] uppercase tracking-[0.2em] font-bold">
+                <div className="w-2 h-2 rounded-full bg-brand-magenta animate-pulse" />
                 Vagas Limitadas Mensalmente
               </div>
             </div>
           </div>
 
-          {/* Right: Decorative Graphic */}
+          {/* Right: Therapist Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 relative hidden lg:block"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex-1 relative"
           >
-            <div className="relative w-full aspect-square max-w-md mx-auto flex items-center justify-center">
-              {/* Glowing Rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border-2 border-brand-magenta/20 rounded-full border-dashed"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-10 border border-brand-indigo/30 rounded-full"
-              />
+            <div className="relative group max-w-lg mx-auto">
+              {/* Outer Glow */}
+              <div className="absolute -inset-4 bg-brand-magenta/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
-              {/* Central Icon Container */}
-              <div className="relative w-48 h-48 md:w-64 md:h-64 bg-linear-to-br from-[#0D0718] via-[#1A0B2E] to-[#0D0718] rounded-full border-4 border-brand-magenta flex items-center justify-center shadow-[0_0_50px_rgba(217,70,239,0.3)] overflow-hidden group">
-                <div className="absolute inset-0 bg-brand-magenta/10 blur-2xl group-hover:bg-brand-magenta/20 transition-all duration-700" />
-                <SystemicTree className="w-24 h-24 md:w-32 md:h-32 text-brand-magenta drop-shadow-[0_0_20px_#D946EF] transition-transform duration-700 group-hover:scale-110" />
+              {/* Image Container */}
+              <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-brand-magenta/30 shadow-[0_0_50px_rgba(174,45,104,0.3)] transition-transform duration-700 group-hover:scale-[1.02] group-hover:border-brand-magenta/60">
+                <img 
+                  src="/WhatsApp Image 2026-04-27 at 10.16.34.jpeg" 
+                  alt="Terapeuta Dayza Ely" 
+                  className="w-full h-auto object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
+                />
+                
+                {/* Decorative Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D0718]/60 via-transparent to-transparent opacity-60" />
+                
+                {/* Floating Elements on Image */}
+                <div className="absolute bottom-6 left-6 right-6 p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                  <p className="text-white font-display italic text-lg text-center">
+                    "Cuidar da mente é transformar a vida."
+                  </p>
+                </div>
               </div>
 
-              {/* Floating Sparkles */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{ 
-                    y: [0, -30, 0],
-                    opacity: [0.2, 0.8, 0.2],
-                    scale: [0.8, 1.2, 0.8]
-                  }}
-                  transition={{ 
-                    duration: 4 + i, 
-                    repeat: Infinity, 
-                    delay: i * 0.7 
-                  }}
-                  className="absolute"
-                  style={{
-                    top: `${Math.random() * 80 + 10}%`,
-                    left: `${Math.random() * 80 + 10}%`,
-                  }}
-                >
-                  <Sparkles className="w-4 h-4 text-brand-magenta/60" />
-                </motion.div>
-              ))}
+              {/* Decorative Accent */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 border-t-4 border-r-4 border-brand-magenta/40 rounded-tr-[3rem] -z-10" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 border-b-4 border-l-4 border-brand-magenta/40 rounded-bl-[3rem] -z-10" />
             </div>
           </motion.div>
 
