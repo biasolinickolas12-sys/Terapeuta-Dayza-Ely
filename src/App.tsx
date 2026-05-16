@@ -1491,8 +1491,6 @@ const PersonalizedSessionSection = () => {
 };
 
 const ExitIntentPopup = ({ isOpen, onClose, whatsappLink }: { isOpen: boolean; onClose: () => void; whatsappLink: string }) => {
-
-const ExitIntentPopup = ({ isOpen, onClose, whatsappLink }: { isOpen: boolean; onClose: () => void; whatsappLink: string }) => {
   return (
     <AnimatePresence>
       {isOpen && (
